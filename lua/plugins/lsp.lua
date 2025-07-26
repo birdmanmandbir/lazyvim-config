@@ -55,4 +55,31 @@ return {
     end,
     ft = { "swift", "objc" },
   },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        swift = { "swiftlint" },
+      },
+    },
+    config = function(_, opts)
+      require("lint").linters_by_ft = opts.linters_by_ft
+      -- LazyVim 默认有 autocmd，你可以扩展
+      vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+        callback = function()
+          if not vim.endswith(vim.fn.bufname(), "swiftinterface") then
+            require("lint").try_lint()
+          end
+        end,
+      })
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        swift = { "swiftformat" },
+      },
+    },
+  },
 }

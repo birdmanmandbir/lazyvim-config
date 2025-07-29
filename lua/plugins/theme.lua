@@ -25,7 +25,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      -- Optional: customize catppuccin settings here
+      transparent_background = true, -- 启用透明背景
     },
   },
   -- Override LazyVim's default colorscheme
@@ -36,3 +36,4 @@ return {
     },
   },
 }
+

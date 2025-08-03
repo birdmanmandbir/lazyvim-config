@@ -35,6 +35,15 @@ require("lazy").setup({
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
   }, -- automatically check for plugin updates
+  git = {
+    throttle = {
+      enabled = true,
+      rate = 10,
+      duration = 5000, -- 持续时间（毫秒）
+      cooldown = 60, -- 默认 0，设置为 60 秒（1 分钟），fetch 后冷却再允许下次
+    },
+    concurrency = 10, -- 限制最大并发 git 任务为 5 个（默认可能更高，根据你的 CPU/网络调整）
+  },
   performance = {
     rtp = {
       -- disable some rtp plugins
